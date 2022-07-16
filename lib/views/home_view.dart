@@ -10,6 +10,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Home View!")),
+      
       body: Column(children: [
             Task(taskName: "Oi"),
         ]),
