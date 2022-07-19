@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
       ]),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            print("Navengando para a página de criação de tasks!");
+            Navigator.pushNamed(context, "/createTask");
           },
           child: Icon(Icons.plus_one)),
     );

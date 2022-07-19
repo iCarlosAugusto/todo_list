@@ -1,10 +1,11 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
 
 class DB {
   DB._();
 
-  static final instance = DB._();
+  static final DB instance = DB._();
 
   static Database? _database;
 
@@ -13,7 +14,7 @@ class DB {
       return _database;
     }
 
-    _database = _initDB();
+    _database = await _initDB();
     return _database;
   }
 
@@ -25,14 +26,15 @@ class DB {
     );
   }
 
-  _createDB(db, version) async {
+  _createDB(Database db, version) async {
+    print("Chegou aqui!");
     await db.execute(_tasks);
   }
 
-  String get _tasks => '''
+  get _tasks => '''
     CREATE TABLE tasks (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT,
-    );
+      name TEXT
+    )
   ''';
 }

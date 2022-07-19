@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/routes/generate_routes.dart';
 import 'package:todo_list/views/home_view.dart';
 
 void main() {
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeView(),
+      initialRoute: "/",
+      onGenerateRoute:  RoutesGenerate.generateRoute,
     );
   }
 }
