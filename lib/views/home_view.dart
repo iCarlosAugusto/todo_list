@@ -9,11 +9,15 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home View!")),
-      
+      appBar: AppBar(title: const Text("Home View!")),
       body: Column(children: [
-            Task(taskName: "Oi"),
-        ]),
+        Task(taskName: "Oi"),
+      ]),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print("Navengando para a página de criação de tasks!");
+          },
+          child: Icon(Icons.plus_one)),
     );
   }
 }
