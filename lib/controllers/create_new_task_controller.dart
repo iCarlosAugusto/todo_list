@@ -10,9 +10,9 @@ class CreateNewTaskController {
     await db.insert('tasks', {'name': name});
   }
 
-  loadTasks() async {
+  Future<List> loadTasks() async {
     db = await DB.instance.database;
     var result = await db.query("tasks");
-    print(result);
+    return result;
   }
 }
