@@ -1,3 +1,5 @@
+import 'package:todo_list/models/task.dart';
+
 import '../database/db.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -5,9 +7,14 @@ import 'package:sqflite/sqlite_api.dart';
 class HomeController {
   late Database db;
 
-  Future<List> loadTasks() async {
+  List<Task> tasks = [];
+
+  loadTasks() async {
     db = await DB.instance.database;
     List result = await db.query("tasks");
-    return result;
+    result.forEach((task) {
+      tasks.add(Task(id: task['id'], name: task['name']));
+    });
+    print(tasks);
   }
 }
