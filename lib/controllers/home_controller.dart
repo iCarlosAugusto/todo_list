@@ -2,12 +2,13 @@ import 'package:mobx/mobx.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list/database/db.dart';
 import 'package:todo_list/models/task.dart';
+import 'package:todo_list/repositories/task_repository.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-
+  TaskRepository taskRepository = TaskRepository();
   late Database db; 
 
   @observable
@@ -16,14 +17,11 @@ abstract class _HomeControllerBase with Store {
   List<Task> get listTasks => _listTasks;
 
   @action 
-  void loadTasks() async {
-    db = await DB.instance.database;
-    List result = await db.query("tasks");
-
+  void getTasks() async {
+    var result = await taskRepository.loadAllTasks();
+    
     result.forEach((element) {
-      _listTasks.add(Task(id: element['id'], name: element['name']));
+      listTasks.add(Task(id: element['id'], name: element['name']));
     });
-
-    print(_listTasks);
   }
 }

@@ -18,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    homeController.loadTasks();
+    homeController.getTasks();
     super.initState();
   }
 
