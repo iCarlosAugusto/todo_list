@@ -22,7 +22,7 @@ abstract class _TaskStoreBase with Store {
   @observable 
   ObservableList<Task> _taskList = ObservableList();
 
-  get taskList => _taskList;
+  ObservableList<Task> get taskList => _taskList;
 
   @action getAllTasks() async {
      _taskList.clear();

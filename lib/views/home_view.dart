@@ -23,7 +23,10 @@ class _HomeViewState extends State<HomeView> {
       body: 
       Observer(builder: ((context) {
         return ListView.separated(itemBuilder: (context, index) {
-          return Text(taskStore.taskList[index].name);
+          return ListTile(
+            title: Text(taskStore.taskList[index].name),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          );
         }, separatorBuilder: (_,__) => const Divider(), itemCount: taskStore.taskList.length);
       })),
       floatingActionButton: FloatingActionButton(
