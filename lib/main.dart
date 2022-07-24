@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/routes/generate_routes.dart';
 import 'package:todo_list/stores/task_store.dart';
-import 'package:todo_list/views/home_view.dart';
+import 'package:todo_list/views/task_list_view.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: "/",
       onGenerateRoute:  RoutesGenerate.generateRoute,
+      
     );
   }
 }
