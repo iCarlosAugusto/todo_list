@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
-import 'package:todo_list/components/task.dart';
-import 'package:todo_list/controllers/home_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/stores/task_store.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -14,28 +11,27 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  HomeController homeController = HomeController();
 
-  @override
-  void initState() {
-    homeController.getTasks();
-    super.initState();
-  }
+  late TaskStore taskStore;
 
   @override
   Widget build(BuildContext context) {
+    taskStore = context.watch<TaskStore>();
+
     return Scaffold(
       appBar: AppBar(title: const Text("Home View!")),
-      body: Observer(builder: ((context) {
+      body: 
+      Observer(builder: ((context) {
         return ListView.separated(itemBuilder: (context, index) {
-          return Text(homeController.listTasks[index].name);
-        }, separatorBuilder: (_,__) => const Divider(), itemCount: homeController.listTasks.length);
+          return Text(taskStore.taskList[index].name);
+        }, separatorBuilder: (_,__) => const Divider(), itemCount: taskStore.taskList.length);
       })),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/createTask");
-          },
-          child: Icon(Icons.plus_one)),
+        onPressed: () {
+          Navigator.pushNamed(context, "/createTask");
+        },
+        child: const Icon(Icons.add)
+      ),
     );
   }
 }

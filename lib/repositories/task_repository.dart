@@ -10,7 +10,7 @@ class TaskRepository {
     return result;
   }
 
-  void createNewTask(String name) async {
+  Future createNewTask(String name) async {
     db = await DB.instance.database;
     await db.insert('tasks', {'name': name });
   }
