@@ -26,7 +26,9 @@ class _TaskListViewState extends State<TaskListView> {
         return ListView.separated(itemBuilder: (context, index) {
           return ListTile(
             title: Text(taskStore.taskList[index].name),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            trailing: IconButton(onPressed: () {
+              print("Click");
+            }, icon: const Icon(Icons.arrow_forward_ios))
           );
         }, separatorBuilder: (_,__) => const Divider(), itemCount: taskStore.taskList.length);
       })),
